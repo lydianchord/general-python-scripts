@@ -19,9 +19,9 @@ def find_folder_and_image():
 
 def make_avi(folder, png_file, wav_file):
     subprocess.call([
-        'ffmpeg', '-y', '-i', folder + png_file, '-i', wav_file, '-c:a',
-        'pcm_s16le', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-b:v', '9000k',
-        folder + wav_file.replace('.wav', '.avi')
+        'ffmpeg', '-y', '-loop', '1', '-i', folder + png_file, '-i', wav_file,
+        '-c:a', 'copy', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '17',
+        '-shortest', folder + wav_file.replace('.wav', '.avi')
     ])
 
 
