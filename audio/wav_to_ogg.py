@@ -5,12 +5,11 @@ import sys
 
 
 def find_folder():
-    folders = [x for x in os.listdir() if '_ogg' in x and os.path.isdir(x)]
-    if len(folders) == 0:
-        sys.exit('Please create a folder containing "_ogg" in its name')
-    else:
-        folder = folders[0]
+    try:
+        folder = [x for x in os.listdir() if '_ogg' in x and os.path.isdir(x)][0]
         print('Found folder: {}\n'.format(folder))
+    except IndexError:
+        sys.exit('Please create a folder containing "_ogg" in its name')
     return folder
 
 
@@ -36,7 +35,7 @@ if __name__ == '__main__':
     folder = find_folder()
     if args.all is True:
         convert_all(folder)
-    elif len(args.filename):
+    elif args.filename:
         wav_to_ogg(folder, args.filename)
     else:
         parser.print_help()
