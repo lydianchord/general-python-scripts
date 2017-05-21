@@ -1,5 +1,7 @@
 __pycache__
 *.wav
 *.db
+*.zip
 _ignore
 output
+web_scraping/jpg_files
